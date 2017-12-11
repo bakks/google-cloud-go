@@ -89,7 +89,7 @@ func keyPartValue(part interface{}) (pb *proto3.Value, err error) {
 	case int64, float64, NullInt64, NullFloat64, bool, NullBool, []byte, string, NullString, time.Time, civil.Date, NullTime, NullDate:
 		pb, _, err = encodeValue(v)
 	case *proto3.Value:
-		pb = v.(*proto3.Value)
+		pb = (*proto3.Value)(v)
 		err = nil
 	default:
 		return nil, errInvdKeyPartType(v)
